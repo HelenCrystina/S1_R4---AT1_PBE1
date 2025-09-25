@@ -2,28 +2,27 @@ const express = require('express')
 const app = require('express')();
 const PORT = 3000;
 
-/*2. Crie uma rota /calculadora que receba os parâmetros via query:
-operacao (valores possíveis: soma, subtracao, multiplicacao, divisao);
-numUm e numDois (números para operação);
-A rota deve processar os parâmetros e retornar o resultado da operação solicitada.
-GET /calculadora?operacao=soma&numUm=4&numDois=6 → Retorna Resultado: 10*/
+/*3. Crie uma rota /operacao/:tipo onde tipo é a operação matemática (soma, subtracao, multiplicacao, divisao).
+Os números numUm e numDois serão passados via query parameters.
+Dica: utilize switch case.
+A rota deve executar a operação e retornar o resultado.  */
 
 
-app.get ('/calculadora', (req, res) => {
-    const {calculo, numeroUm, numeroDois} = req.query;
+app.get ('/calculadora/:tipo/:numeroUm/:numeroDois', async (req, res) => {
+    const {calculo, numeroUm, numeroDois} = req.params;
     let resultado;
-    if (calculo=="soma") {
+    if (tipo=="soma") {
         resultado = parseFloat(numeroUm) + parseFloat(numeroDois)
         res.send (`O Resultado da operação ${calculo} é ${resultado}`)
-    } if (calculo=="subtracao") {
+    } if (tipo=="subtracao") {
         resultado = parseFloat(numeroUm)-parseFloat(numeroDois);
         res.send (`O Resultado da operação ${calculo} é ${resultado}`)
 
-    } if (calculo=="multiplicacao") {
+    } if (tipo=="multiplicacao") {
         resultado = parseFloat(numeroUm)*parseFloat(numeroDois)
         res.send (`O Resultado da operação ${calculo} é ${resultado}`)
 
-    } if (calculo=="divisao") {
+    } if (tipo=="divisao") {
         resultado = parseFloat(numeroUm)/parseFloat(numeroDois)
         res.send (`O Resultado da operação ${calculo} é: ${resultado}`)
     } else {

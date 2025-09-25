@@ -40,6 +40,31 @@ app.get ('/divisao/:numeroUm/:numeroDois', async (req, res) => {
 });
 
 
+
+
+/*2. Crie uma rota /calculadora que receba os parâmetros via query:
+operacao (valores possíveis: soma, subtracao, multiplicacao, divisao);
+numUm e numDois (números para operação);
+A rota deve processar os parâmetros e retornar o resultado da operação solicitada.
+GET /calculadora?operacao=soma&numUm=4&numDois=6 → Retorna Resultado: 10*/
+
+
+app.get ('/calculadora/soma', async (req, res) => {
+    const {numeroUm, numeroDois} = req.query;
+    const resultado = parseFloat(numeroUm) + parseFloat(numeroDois);
+
+});
+
+app.get ('/calculadora', async (req, res) => {
+    const {calculo, numeroUm, numeroDois} = req.query;
+    let resultado;
+    if (calculo=="soma") {
+        resultado = 
+    }
+
+});
+
+
 app.listen(PORT, () => {
     console.log(`Servidor executando na porta ${PORT}`);
 })

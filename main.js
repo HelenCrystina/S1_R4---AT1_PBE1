@@ -49,20 +49,27 @@ A rota deve processar os parâmetros e retornar o resultado da operação solici
 GET /calculadora?operacao=soma&numUm=4&numDois=6 → Retorna Resultado: 10*/
 
 
-app.get ('/calculadora/soma', async (req, res) => {
-    const {numeroUm, numeroDois} = req.query;
-    const resultado = parseFloat(numeroUm) + parseFloat(numeroDois);
-
-});
-
 app.get ('/calculadora', async (req, res) => {
     const {calculo, numeroUm, numeroDois} = req.query;
+    const numero1=parseFloat(numeroUm)
+    const numero2=parseFloat(numeroDois)
+
     let resultado;
     if (calculo=="soma") {
-        resultado = 
+        resultado = numeroUm+numeroDois
+    } if (calculo=="subtracao") {
+        resultado = numeroUm-numeroDois
+    } if (calculo=="multiplicacao") {
+        resultado = numeroUm*numeroDois
+    } if (calculo=="divisao") {
+        resultado = numeroUm/numeroDois
+    } else {
+        console.log("EScreva uma operação correta!");
     }
+        
+    });
 
-});
+res.send (`O Resultado da operação ${calculo} é ${resultado}`)
 
 
 app.listen(PORT, () => {
